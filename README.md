@@ -35,3 +35,8 @@ Made with Python3 <3
 
 # Finally
 I want to thank the developers of the amazing pytube package powers my script to run efficiently in dowloading entire playlist of a channel.
+
+
+# Video
+
+If you would like to watch a video tutorial then <a href='https://www.youtube.com/watch?v=Sk4PlD1pAdg&t=4s' target='_blank'>Click Here</a><br>
