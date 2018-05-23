@@ -72,11 +72,12 @@ def link_snatcher(url):
 
 BASE_DIR = os.getcwd()
 
+print('WELCOME TO PLAYLIST DOWNLOADER DEVELOPED BY - www.github.com/mohit0101')
 
-url = str(input("specify you playlist url\n"))
+url = str(input("\nspecify you playlist url\n"))
 
-print('CHOOSE ANY ONE - TYPE 360P OR 720P')
-user_res = str(input("\n")).lower()
+print('\nCHOOSE ANY ONE - TYPE 360P OR 720P\n')
+user_res = str(input()).lower()
 
 
 print('...You choosed ' + user_res + ' resolution\n.')
@@ -101,6 +102,8 @@ x=[]
 for root, dirs, files in os.walk(".", topdown=False):
     for name in files:
         pathh = os.path.join(root, name)
+
+        
         if os.path.getsize(pathh) < 1:
             os.remove(pathh)
         else:
@@ -109,17 +112,24 @@ for root, dirs, files in os.walk(".", topdown=False):
 
 print('\nconnecting . . .\n')
 
+
+print()
+
 for link in our_links:
     try:
         yt = YouTube(link)
         main_title = yt.title
         main_title = main_title + '.mp4'
+        main_title = main_title.replace('|', '')
+        
     except:
         print('connection problem..unable to fetch video info')
         break
 
+    
     if main_title not in x:
 
+        
         if user_res == '360p' or user_res == '720p':
             vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
             print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
