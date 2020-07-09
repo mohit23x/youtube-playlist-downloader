@@ -28,7 +28,7 @@ Made with Python3 <3
 
 <ul>
     <li>requests (pip install requests)</li>
-    <li>pytube (pip install pytube)</li>
+    <li>pytube (pip install pytube3)</li>
     <li>youtube-dl (pip install youtube-dl)</li>
 </ul>
 
