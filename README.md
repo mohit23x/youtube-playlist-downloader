@@ -1,12 +1,14 @@
 
 # youtube-playlist-downloader
-A simple script to download entire youtube playlist in desirable foramt (360p or 720p)
-
+A simple script to download entire youtube playlist in 360p or 720p.
 Made with Python3 <3
+**Not actively maintained**
+
+> NOTE: I do not encourage to download any copyright content from Youtube, this script is for educational purpose only.
+
 
 
 # Usage
-
 <ul>
     <li>open cmd and cd to the folder where this script is present</li>
     <li>type - python ytdown.py</li>
@@ -25,10 +27,9 @@ Made with Python3 <3
 
 
 # Requirements
-
 <ul>
     <li>requests (pip install requests)</li>
-    <li>pytube (pip install pytube3)</li>
+    <li>pytube (pip install pytube)</li>
     <li>youtube-dl (pip install youtube-dl)</li>
 </ul>
 
@@ -38,5 +39,9 @@ I want to thank the developers of the amazing pytube package powers my script to
 
 
 # Video
-
 If you would like to watch a video tutorial then <a href='https://www.youtube.com/watch?v=Sk4PlD1pAdg&t=4s' target='_blank'>Click Here</a><br>
+
+
+# How it works?
+At its core we are using Pytube to download videos, i wrote this script when downloading playlist was not inbuilt in pytube, so we fetch the list of videos from playlist page and download them in sequence.
+
