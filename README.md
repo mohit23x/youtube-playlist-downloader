@@ -1,8 +1,9 @@
 
 # youtube-playlist-downloader
 A simple script to download entire youtube playlist in 360p or 720p.
-Made with Python3 <3
-**Not actively maintained**
+Made with Python3
+
+**> Not actively maintained <**
 
 > NOTE: I do not encourage to download any copyright content from Youtube, this script is for educational purpose only.
 
