@@ -131,10 +131,14 @@ for link in our_links:
 
         
         if user_res == '360p' or user_res == '720p':
-            vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
-            print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
-            vid.download(SAVEPATH)
-            print('Video Downloaded')
+            try:
+                vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
+                print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
+                vid.download(SAVEPATH)
+                print('Video Downloaded')
+
+            except AttributeError:
+                print(f'failed to download "{main_title}".. the video may not have the specified type of stream')
         else:
             print('something is wrong.. please rerun the script')
 
