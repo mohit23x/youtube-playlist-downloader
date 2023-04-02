@@ -62,7 +62,7 @@ def link_snatcher(url):
 
     for m in mat:
         new_m = m.replace('&amp;', '&')
-        work_m = 'https://youtube.com/' + new_m
+        work_m = f'https://youtube.com/{new_m}'
         # print(work_m)
         if work_m not in our_links:
             our_links.append(work_m)
@@ -80,7 +80,7 @@ print('\nCHOOSE ANY ONE - TYPE 360P OR 720P\n')
 user_res = str(input()).lower()
 
 
-print('...You choosed ' + user_res + ' resolution\n.')
+print(f'...You choosed {user_res}' + ' resolution\n.')
 
 our_links = link_snatcher(url)
 
@@ -103,7 +103,7 @@ for root, dirs, files in os.walk(".", topdown=False):
     for name in files:
         pathh = os.path.join(root, name)
 
-        
+
         if os.path.getsize(pathh) < 1:
             os.remove(pathh)
         else:
@@ -119,28 +119,27 @@ for link in our_links:
     try:
         yt = YouTube(link)
         main_title = yt.title
-        main_title = main_title + '.mp4'
+        main_title = f'{main_title}.mp4'
         main_title = main_title.replace('|', '')
-        
+
     except:
         print('connection problem..unable to fetch video info')
         break
 
-    
-    if main_title not in x:
 
-        
-        if user_res == '360p' or user_res == '720p':
-            vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
-            print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
-            vid.download(SAVEPATH)
-            print('Video Downloaded')
-        else:
-            print('something is wrong.. please rerun the script')
-
-
-    else:
+    if main_title in x:
         print(f'\n skipping "{main_title}" video \n')
+
+
+    elif user_res in {'360p', '720p'}:
+        vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
+        print(
+            f'Downloading. . . {vid.default_filename} and its file size -> {str(round(vid.filesize / (1024 * 1024), 2))} MB.'
+        )
+        vid.download(SAVEPATH)
+        print('Video Downloaded')
+    else:
+        print('something is wrong.. please rerun the script')
 
 
 print(' downloading finished')
