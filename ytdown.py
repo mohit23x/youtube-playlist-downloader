@@ -114,14 +114,14 @@ print('\nconnecting . . .\n')
 
 
 print()
-
+incremental_value = 1
 for link in our_links:
     try:
         yt = YouTube(link)
         main_title = yt.title
-        main_title = main_title + '.mp4'
-        main_title = main_title.replace('|', '')
-        
+        main_title = f'{incremental_value}_{main_title}.mp4'
+        main_title = main_title.replace('|', '').replace("?","")
+        incremental_value += 1
     except:
         print('connection problem..unable to fetch video info')
         break
@@ -129,15 +129,16 @@ for link in our_links:
     
     if main_title not in x:
 
-        
-        if user_res == '360p' or user_res == '720p':
-            vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
-            print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
-            vid.download(SAVEPATH)
-            print('Video Downloaded')
-        else:
-            print('something is wrong.. please rerun the script')
-
+        try:
+             if user_res == '360p' or user_res == '720p' :
+                 vid = yt.streams.filter(progressive=True, file_extension='mp4', res=user_res).first()
+                 print('Downloading. . . ' + vid.default_filename + ' and its file size -> ' + str(round(vid.filesize / (1024 * 1024), 2)) + ' MB.')
+                 vid.download(SAVEPATH,filename= main_title)
+                 print('Video Downloaded',main_title)
+             else:
+                 print('something is wrong.. please rerun the script')
+        except Exception as e:
+           print(f'Error: {e}')
 
     else:
         print(f'\n skipping "{main_title}" video \n')
